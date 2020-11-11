@@ -24,7 +24,8 @@ int main(){
     for (int i=1;i<=n;i++) x[i]-=i;
     sort(x+1,x+1+n);
     mid=x[n/2+1];
-    for (int i=1;i<=n;i++) ans2+=abs(x[i]-mid);
+    for (int i=1;i<=n;i++) 
+        ans2+=abs(x[i]-mid);
     printf("%d\n",ans1+ans2);
     return 0;
 }
