@@ -21,10 +21,11 @@ int main(){
     for (int i=1;i<=n;i++){
         ans1+=abs(y[i]-mid);
     }
-    for (int i=1;i<=n;i++) x[i]-=i;
+    for (int i=1;i<=n;i++)      //将各个士兵分配到每个x轴上的点
+        x[i]-=i;
     sort(x+1,x+1+n);
     mid=x[n/2+1];
-    for (int i=1;i<=n;i++) 
+    for (int i=1;i<=n;i++)      //这里可以看到，|X0-k|+|（X1-1）-k|+ …… +|（Xn-1-（n-1））-k|，也是求中位数
         ans2+=abs(x[i]-mid);
     printf("%d\n",ans1+ans2);
     return 0;
