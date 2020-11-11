@@ -1,5 +1,6 @@
 #include<cstdio>
 #include<algorithm>
+
 using namespace std;
 
 const int maxn=10000+10;
