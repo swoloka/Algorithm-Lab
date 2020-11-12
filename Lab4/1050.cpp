@@ -48,10 +48,10 @@ int main(){
             for(j=i;j<n;j++)
             {
                 for(k=0;k<n;k++)
-                    arr[k] += dp[j][k];
-                maxsubarr = MaxSub(arr,n);
+                    arr[k] += dp[j][k];     //将多个行转化为1行，因为此处k[n]只有0～n-1一共n项，每次会把先前的行加到新行
+                maxsubarr = MaxSub(arr,n);  //每次合并一行之后都会重新计算数组
                 if(maxsubarr > maxMatrix)
-                    maxMatrix = maxsubarr;
+                    maxMatrix = maxsubarr;  //这里不断判断最大的sum
             }
         }
         cout<<maxMatrix<<endl;
