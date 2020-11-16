@@ -8,7 +8,7 @@ using namespace std;
 #define INF 0x3f3f3f3f
 struct edge
 {
-    int to,w;
+    int to,w;    
 };
 bool inq[M];
 vector <edge> g[M];
