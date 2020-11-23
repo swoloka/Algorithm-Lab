@@ -9,7 +9,7 @@ int main()
     map<string,string>M;
     string s1,s2,s;
     char str[15];
-    while(gets(str)&&strlen(str))//字典输入结束条件 
+    while((cin>>str)&&strlen(str))//字典输入结束条件 
     {
         s1=s2="\0";
         int i;

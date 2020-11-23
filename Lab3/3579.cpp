@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-//使用lower_bound查找第一个比目标大的数
+//使用lower_bound查找第一个比目标大或等于的数
 int N;
 int CN2 = 0;
 int X[100005];
@@ -16,7 +16,7 @@ bool C(int x)
     }
     return cnt > CN2 >> 1;
 }
-void solve()
+void solve() //中位数是B序列里的第(N+1)/2个元素
 {
     sort(X, X + N);
     CN2 = N * (N - 1) >> 1;
@@ -26,7 +26,7 @@ void solve()
         if (C(mid))
             lb = mid; // 中位数过小，半闭半开区间[lb, ub)
         else
-            ub = mid;   
+            ub = mid;
     }
     printf("%d\n", lb);
 }
