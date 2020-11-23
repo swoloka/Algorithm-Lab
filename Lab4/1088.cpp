@@ -33,60 +33,61 @@ int main()
 
 
 
+/*
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+using namespace std;
 
-// #include <iostream>
-// #include <cstdio>
-// #include <cstring>
-// #include <algorithm>
-// using namespace std;
+const int maxn = 100 + 10;
+int a[maxn][maxn], f[maxn][maxn];
+int R, C;
 
-// const int maxn = 100 + 10;
-// int a[maxn][maxn], f[maxn][maxn];
-// int R, C;
+inline char getc(void)
+{
+	static char buf[1000000], *p1 = buf, *p2 = buf;
+	if(p1 == p2){
+		p2 = (p1 = buf) + fread(buf, 1, 1000000, stdin);
+		if(p1 == p2) return EOF;
+	}
+	return *p1++;
+}
 
-// inline char getc(void)
-// {
-// 	static char buf[1000000], *p1 = buf, *p2 = buf;
-// 	if(p1 == p2){
-// 		p2 = (p1 = buf) + fread(buf, 1, 1000000, stdin);
-// 		if(p1 == p2) return EOF;
-// 	}
-// 	return *p1++;
-// }
+inline void read(int& x)
+{
+	x = 0; int f = 1; char ch = getc();
+	for(;!(ch>='0' && ch<='9');ch=getc()) if(ch == '-') f = -1;
+	for(;(ch>='0' && ch <='9');x=x*10+ch-'0', ch=getc());
+	x *= f;
+}
 
-// inline void read(int& x)
-// {
-// 	x = 0; int f = 1; char ch = getc();
-// 	for(;!(ch>='0' && ch<='9');ch=getc()) if(ch == '-') f = -1;
-// 	for(;(ch>='0' && ch <='9');x=x*10+ch-'0', ch=getc());
-// 	x *= f;
-// }
+inline int dp(int i, int j)
+{
+	if(f[i][j] > 1) return f[i][j];
+	int maxx = 1;
+	if(a[i][j] > a[i][j-1] && j-1 >= 0)
+		maxx = max(maxx, dp(i, j-1) + 1);
+	if(a[i][j] > a[i][j+1] && j+1 < C)
+		maxx = max(maxx, dp(i, j+1) + 1);
+	if(a[i][j] > a[i-1][j] && i-1 >= 0)
+		maxx = max(maxx, dp(i-1, j) + 1);
+	if(a[i][j] > a[i+1][j] && i+1 < R)
+		maxx = max(maxx, dp(i+1, j) + 1);
+	return maxx;
+}
 
-// inline int dp(int i, int j)
-// {
-// 	if(f[i][j] > 1) return f[i][j];
-// 	int maxx = 1;
-// 	if(a[i][j] > a[i][j-1] && j-1 >= 0)
-// 		maxx = max(maxx, dp(i, j-1) + 1);
-// 	if(a[i][j] > a[i][j+1] && j+1 < C)
-// 		maxx = max(maxx, dp(i, j+1) + 1);
-// 	if(a[i][j] > a[i-1][j] && i-1 >= 0)
-// 		maxx = max(maxx, dp(i-1, j) + 1);
-// 	if(a[i][j] > a[i+1][j] && i+1 < R)
-// 		maxx = max(maxx, dp(i+1, j) + 1);
-// 	return maxx;
-// }
+int main()
+{
+	read(R); read(C);
+	for(int i=0;i<R;i++)
+		for(int j=0;j<C;j++)
+			read(a[i][j]), f[i][j] = 1;
+	int maxx = 0;
+	for(int i=0;i<R;i++)
+		for(int j=0;j<C;j++)
+			maxx = max(maxx, (f[i][j] = dp(i, j)));
+	printf("%d\n", maxx);
+}
 
-// int main()
-// {
-// 	read(R); read(C);
-// 	for(int i=0;i<R;i++)
-// 		for(int j=0;j<C;j++)
-// 			read(a[i][j]), f[i][j] = 1;
-// 	int maxx = 0;
-// 	for(int i=0;i<R;i++)
-// 		for(int j=0;j<C;j++)
-// 			maxx = max(maxx, (f[i][j] = dp(i, j)));
-// 	printf("%d\n", maxx);
-// }
-
+*/

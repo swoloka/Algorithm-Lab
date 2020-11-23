@@ -1,3 +1,66 @@
+//dijkstra算法
+#include <algorithm>
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+#include <iostream>
+#define CLR(x) memset(x, 0, sizeof(x))
+using namespace std;
+const int INF = 100000;
+const int maxp = 1100;
+const int maxl = 1000000;
+int edge[maxp][maxp];
+int dist[maxp];
+int vis[maxp];
+int p, l;
+
+int dijkstra(int x) //算法主体
+{
+    for (int i = 1; i <= p; i++)
+        dist[i] = INF;
+    int v = x;
+    dist[v] = 0;
+    vis[v] = 1;
+    for (int i = 1; i <= p; i++) {          
+        for (int j = 1; j <= p; j++) {      //松弛每条边
+            if (vis[j] != 1 && dist[v] + edge[v][j] < dist[j]) {
+                dist[j] = dist[v] + edge[v][j];
+            }
+        }
+        int minn = INF;
+        for (int j = 1; j <= p; j++)        //寻找出最短的路径
+            if (vis[j] != 1 && dist[j] < minn) {
+                minn = dist[j];
+                v = j;
+            }
+        vis[v] = 1;
+    }
+}
+
+int main()
+{
+    while (scanf("%d%d", &l, &p) != EOF) {
+        for (int i = 0; i < maxp; i++) {
+            for (int j = 0; j < maxp; j++) {
+                edge[i][j] = INF;
+            }
+            edge[i][i] = 0; 
+        }
+        CLR(vis);
+        for (int i = 1; i <= l; i++) {
+            int u, v, w;
+            scanf("%d %d %d", &u, &v, &w);
+            if (edge[u][v] > w) {       // 因为可能输入重复两条边的值我们需要选出同样的边最小的那一个值；
+                edge[u][v] = edge[v][u] = w;
+            }
+        }
+        dijkstra(1);
+        printf("%d\n", dist[p]);
+    }
+}
+
+
+
 // #include <iostream>
 // #include <cstdio>
 // #include <cstring>
@@ -68,64 +131,3 @@
 //     return 0;
 // }
 
-//dijkstra算法
-
-#include <algorithm>
-#include <cmath>
-#include <cstdio>
-#include <cstring>
-#include <iostream>
-#define CLR(x) memset(x, 0, sizeof(x))
-using namespace std;
-const int INF = 100000;
-const int maxp = 1100;
-const int maxl = 1000000;
-int edge[maxp][maxp];
-int dist[maxp];
-int vis[maxp];
-int p, l;
-
-int dijkstra(int x) //磁少风格版
-{
-    for (int i = 1; i <= p; i++)
-        dist[i] = INF;
-    int v = x;
-    dist[v] = 0;
-    vis[v] = 1;
-    for (int i = 1; i <= p; i++) {          
-        for (int j = 1; j <= p; j++) {      //松弛每条边
-            if (vis[j] != 1 && dist[v] + edge[v][j] < dist[j]) {
-                dist[j] = dist[v] + edge[v][j];
-            }
-        }
-        int minn = INF;
-        for (int j = 1; j <= p; j++)        //寻找出最短的路径
-            if (vis[j] != 1 && dist[j] < minn) {
-                minn = dist[j];
-                v = j;
-            }
-        vis[v] = 1;
-    }
-}
-
-int main()
-{
-    while (scanf("%d%d", &l, &p) != EOF) {
-        for (int i = 0; i < maxp; i++) {
-            for (int j = 0; j < maxp; j++) {
-                edge[i][j] = INF;
-            }
-            edge[i][i] = 0; // 因为可能输入重复两条边的值我们需要选出同样的边最小的那一个值；
-        }
-        CLR(vis);
-        for (int i = 1; i <= l; i++) {
-            int u, v, w;
-            scanf("%d %d %d", &u, &v, &w);
-            if (edge[u][v] > w) {
-                edge[u][v] = edge[v][u] = w;
-            }
-        }
-        dijkstra(1);
-        printf("%d\n", dist[p]);
-    }
-}
